@@ -172,6 +172,7 @@ def train_single_scale(netD,netG,reals,Gs,Zs,in_s,NoiseAmp,opt,centers=None):
 
         for j in range(opt.Gsteps):
             netG.zero_grad()
+            fake = netG(noise.detach(), prev.detach())
             output = netD(fake)
             #D_fake_map = output.detach()
             errG = -output.mean()
